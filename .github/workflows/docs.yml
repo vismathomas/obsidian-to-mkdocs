@@ -28,6 +28,7 @@ jobs:
       - name: Export Obsidian to GitHub Markdown
         run: |
           rm -rf exported site
+          mkdir exported
           obsidian-export docs exported
           cp README.md exported/index.md
 
