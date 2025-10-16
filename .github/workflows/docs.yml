@@ -16,21 +16,14 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.x'
-      - name: Install obsidian-export
+      - name: Install obsidian-export via cargo
         run: |
-          set -e
-          # Query the API for the first Linux asset download URL
-          ASSET_URL=$(curl -s https://api.github.com/repos/zoni/obsidian-export/releases/latest \
-            | grep browser_download_url \
-            | grep linux \
-            | grep -E 'tar\.gz' \
-            | cut -d '"' -f 4 \
-            | head -n 1)
-          echo "Downloading from: $ASSET_URL"
-          curl -L "$ASSET_URL" -o obsidian-export.tar.gz
-          tar -xzf obsidian-export.tar.gz
-          chmod +x obsidian-export
-          sudo mv obsidian-export /usr/local/bin/
+            sudo apt-get update
+            sudo apt-get install -y curl build-essential pkg-config libssl-dev
+            curl https://sh.rustup.rs -sSf | sh -s -- -y
+            source $HOME/.cargo/env
+            cargo install obsidian-export
+            echo "$HOME/.cargo/bin" >> $GITHUB_PATH
           
       - name: Export Obsidian to GitHub Markdown
         run: |
