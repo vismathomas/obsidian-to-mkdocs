@@ -16,23 +16,29 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.x'
-      - run: pip install mkdocs-material
-
       - name: Install obsidian-export
         run: |
           set -e
-          LATEST=$(curl -s https://api.github.com/repos/zoni/obsidian-export/releases/latest | grep tag_name | cut -d '"' -f 4)
-          curl -L "https://github.com/zoni/obsidian-export/releases/download/${LATEST}/obsidian-export-x86_64-unknown-linux-musl.tar.gz" -o obsidian-export.tar.gz
+          # Query the API for the first Linux asset download URL
+          ASSET_URL=$(curl -s https://api.github.com/repos/zoni/obsidian-export/releases/latest \
+            | grep browser_download_url \
+            | grep linux \
+            | grep -E 'tar\.gz' \
+            | cut -d '"' -f 4 \
+            | head -n 1)
+          echo "Downloading from: $ASSET_URL"
+          curl -L "$ASSET_URL" -o obsidian-export.tar.gz
           tar -xzf obsidian-export.tar.gz
           chmod +x obsidian-export
           sudo mv obsidian-export /usr/local/bin/
-
+          
       - name: Export Obsidian to GitHub Markdown
         run: |
           rm -rf exported site
           obsidian-export docs exported
           cp README.md exported/index.md
 
+      - run: pip install mkdocs-material
       - name: Build MkDocs site
         run: mkdocs build --clean
 
