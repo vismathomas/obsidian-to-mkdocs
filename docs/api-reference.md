@@ -12,6 +12,7 @@ Complete API reference for Fjas Framework.
 - [Schema Validation](#schema-validation)
 - [Cache API](#cache-api)
 - [Configuration](#configuration)
+- [LICENSE](LICENSE)
 
 ## Core API
 

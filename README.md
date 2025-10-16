@@ -28,6 +28,7 @@
 - **Multi-Protocol** 🔌 - REST, GraphQL, gRPC, and WebSocket support
 - **Observability** 👁️ - OpenTelemetry integration with distributed tracing
 
+![](DALL·E%202025-01-27%2011.15.55%20-%20A%20unique,%20dramatic%20cover%20image%20inspired%20by%20the%20concept%20of%20'Breaking%20Bad,'%20featuring%20an%20old%20RV%20in%20the%20desert.%20The%20RV%20has%20a%20high-tech%20twist%20with%20antenna.webp)
 ## 🚀 Quick Start
 
 ### Installation
