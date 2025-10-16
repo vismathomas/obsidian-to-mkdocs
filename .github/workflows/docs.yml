@@ -16,7 +16,15 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.x'
-      - run: pip install mkdocs-material obsidian-export
+      - run: pip install mkdocs-material
+
+      - name: Install obsidian-export
+        run: |
+          curl -L https://github.com/zoni/obsidian-export/releases/latest/download/obsidian-export-x86_64-unknown-linux-musl.tar.gz \
+            -o obsidian-export.tar.gz
+          tar -xzf obsidian-export.tar.gz
+          chmod +x obsidian-export
+          sudo mv obsidian-export /usr/local/bin/
 
       - name: Export Obsidian to GitHub Markdown
         run: |
@@ -30,12 +38,3 @@ jobs:
       - uses: actions/upload-pages-artifact@v3
         with:
           path: site
-
-  deploy:
-    needs: build
-    permissions:
-      pages: write
-      id-token: write
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/deploy-pages@v4
