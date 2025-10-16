@@ -1,0 +1,9 @@
+{
+  "theme": "system",
+  "translucency": false,
+  "baseFontSize": 16,
+  "textFontFamily": "JetBrains Mono, monospace",
+  "cssTheme": "Obsidian Nord",
+  "accentColor": "#0969da",
+  "enabledCssSnippets": []
+}

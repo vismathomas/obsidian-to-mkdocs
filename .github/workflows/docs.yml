@@ -1,0 +1,41 @@
+name: Build and Deploy Obsidian Docs
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'docs/**'
+      - 'mkdocs.yml'
+      - '.obsidian/**'
+      - 'README.md'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - run: pip install mkdocs-material obsidian-export
+
+      - name: Export Obsidian to GitHub Markdown
+        run: |
+          rm -rf exported site
+          obsidian-export docs exported
+          cp README.md exported/index.md
+
+      - name: Build MkDocs site
+        run: mkdocs build --clean
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    needs: build
+    permissions:
+      pages: write
+      id-token: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/deploy-pages@v4

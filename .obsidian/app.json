@@ -1,0 +1,11 @@
+{
+  "promptDelete": false,
+  "fileSortOrder": "alphabetical",
+  "spellcheck": true,
+  "showFrontmatter": true,
+  "useMarkdownLinks": true,
+  "legacyEditor": false,
+  "defaultViewMode": "preview",
+  "newFileLocation": "current",
+  "attachmentFolderPath": "docs/images"
+}
