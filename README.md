@@ -4,7 +4,7 @@
 [![Version](https://img.shields.io/badge/version-2.1.0-blue)](https://github.com)
 [![License](https://img.shields.io/badge/license-MIT-orange)](LICENSE)
 
-**THIS IS WITH OBSIDIAN**
+**THIS IS WITH OBSIDIAN!!**
 
 **Fjas** (Fast JSON API Service) is a next-generation, high-performance API gateway and data transformation engine designed for modern cloud-native applications. Built with speed, scalability, and ever glorious developer experience in mind.
 **Fjas** (Fast JSON API Service) is a next-generation, high-performance API gateway and data transformation engine designed for modern cloud-native applications. Built with speed, scalability, and feverish but glorious developer experience in mind.
